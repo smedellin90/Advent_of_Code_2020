@@ -2,20 +2,13 @@ use std::collections::HashSet;
 use std::io::{self, Read, Write};
 use std::vec::Vec;
 
-//type Result<T> = ::std::result::Result<T, Box<::std::error::Error>>;
 type Result<T> = ::std::result::Result<T, Box<dyn (::std::error::Error)>>;
-
-// fn string_buf() -> Result<String> {
-//     let mut input = String::new();
-//     io::stdin().read_to_string(&mut input)?;
-//     Ok(input)
-// }
 
 fn main() -> Result<()> {
     let mut input = String::new();
     io::stdin().read_to_string(&mut input)?;
 
-    //part1(&input)?;
+    part1(&input)?;
     part2(&input)?;
 
     Ok(())
