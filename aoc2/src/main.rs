@@ -22,18 +22,8 @@ impl Password {
     }
 
     pub fn is_valid_password_part2(&self) -> bool {
-        let first = self
-            .password
-            .chars()
-            .nth(self.min - 1)
-            .unwrap();
-
-        let last = self
-            .password
-            .chars()
-            .nth(self.max - 1)
-            .unwrap();
-
+        let first = self.password.chars().nth(self.min - 1).unwrap();
+        let last = self.password.chars().nth(self.max - 1).unwrap();
         self.is_valid_password_char(&first) ^ self.is_valid_password_char(&last)
     }
 
@@ -78,6 +68,9 @@ fn part1(input: &str) -> Result<()> {
 fn part2(input: &str) -> Result<()> {
     let mut vec: Vec<Password> = Vec::new();
     vec = parse(&input);
-    println!("{}", vec.iter().filter(|x| x.is_valid_password_part2()).count());
+    println!(
+        "{}",
+        vec.iter().filter(|x| x.is_valid_password_part2()).count()
+    );
     Ok(())
 }
