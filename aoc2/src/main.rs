@@ -4,6 +4,16 @@ use std::vec::Vec;
 
 type Result<T> = ::std::result::Result<T, Box<dyn (::std::error::Error)>>;
 
+fn main() -> Result<()> {
+    let mut input = String::new();
+    io::stdin().read_to_string(&mut input)?;
+
+    part1(&input)?;
+    part2(&input)?;
+
+    Ok(())
+}
+
 struct Password {
     password: String,
     min: usize,
@@ -22,8 +32,14 @@ impl Password {
     }
 
     pub fn is_valid_password_part2(&self) -> bool {
-        let first = self.password.chars().nth(self.min - 1).unwrap();
-        let last = self.password.chars().nth(self.max - 1).unwrap();
+        let first = self.password.chars()
+            .nth(self.min - 1)
+            .unwrap();
+        let last = self
+            .password
+            .chars()
+            .nth(self.max - 1)
+            .unwrap();
         self.is_valid_password_char(&first) ^ self.is_valid_password_char(&last)
     }
 
@@ -46,16 +62,6 @@ fn parse_line(line: &str) -> Password {
 
 fn parse(input: &str) -> Vec<Password> {
     input.lines().map(|v| parse_line(v)).collect()
-}
-
-fn main() -> Result<()> {
-    let mut input = String::new();
-    io::stdin().read_to_string(&mut input)?;
-
-    part1(&input)?;
-    part2(&input)?;
-
-    Ok(())
 }
 
 fn part1(input: &str) -> Result<()> {
